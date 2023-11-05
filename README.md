@@ -125,3 +125,13 @@ nuxt-app/
 * 一定要下載 "@nuxtjs/tailwindcss"
 * 一定要在 nuxt.config.ts中設定 modules
 :::
+
+##  Fetch data (API)
+:::warning
+* Nuxt可以在server pre-render/ browser re-render階段執行程式，除非額外設定，不要在程式中呼叫windows/ browser的屬性或物件
+
+:::
+
+:::info
+* [fakestoreAPI](https://fakestoreapi.com)：取得假資料
+:::
