@@ -6,6 +6,9 @@
 </template>
 
 <script setup lang="ts">
+import { definePageMeta } from '#imports';
+
+definePageMeta({ layout: 'products' })
 </script>
 
 <style scoped>

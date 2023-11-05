@@ -7,6 +7,9 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
+import { definePageMeta } from '#imports';
+
+definePageMeta({ layout: 'products' })
 const { id } = useRoute().params;
 </script>
 
