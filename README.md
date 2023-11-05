@@ -75,7 +75,7 @@ bun run preview
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 
-#  Project Structure
+##  Project Structure
 
 ```
 nuxt-app/
@@ -104,15 +104,24 @@ nuxt-app/
 └── tsconfig.json "配置擴展或覆蓋 Nuxt 3 預設的 TypeScript 設定檔。"
 ```
 
-# Pages
+## [Module Explorer](https://nuxt.com/modules)
+
+## Pages
 :::info
 * index.vue 表示該頁面層的根目錄 /
 * 每多一層資料夾，路徑會多一層資料夾名稱
 * [<pathParam>].vue 可以產生對應路徑變數的變數名稱頁面
 :::
 
-# Layouts
+## Layouts
 :::info
 * 預設會自動載入 default.vue
 * 名稱會對應到頁面[pages]的資料夾名稱，並在該頁面層套用指定Layout
+:::
+
+## StyleSheet (TailwindCSS)
+:::info
+* 路徑限定要在 ./assets/css/tailwind.css
+* 一定要下載 "@nuxtjs/tailwindcss"
+* 一定要在 nuxt.config.ts中設定 modules
 :::
