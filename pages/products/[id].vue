@@ -10,18 +10,13 @@
 </template>
 
 <script setup lang="ts">
+import { Product } from '~/composables/constant/Product';
+
 definePageMeta({ layout: 'products' });
 const { id } = useRoute().params;
 
 const uri = 'https://fakestoreapi.com/products/' + id;
-type Product = {
-  id: number,
-  title: string,
-  price: string,
-  category: string,
-  description: string,
-  image: string
-};
+
 // fetch Product
 const { data } = await useFetch(uri, { key: id });
 if (!data.value) {

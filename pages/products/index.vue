@@ -9,19 +9,15 @@
 </template>
 
 <script setup lang="ts">
+import { Product } from '~/composables/constant/Product';
+
 // 設定 Custom Layout
 definePageMeta({ layout: 'products' });
-type Product = {
-    id: number,
-    title: string,
-    price: string,
-    category: string,
-    description: string,
-    image: string
-};
 
 // 取得資料 在client render或 server pre-render時
-const { data: productList } = await useFetch('https://fakestoreapi.com/products');
+const { data } = await useFetch('https://fakestoreapi.com/products');
+const productList = data.value as Product[];
+
 // custom header and tab tag
 // useHead({
 //     title: 'Merchandise',
