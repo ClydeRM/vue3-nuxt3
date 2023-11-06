@@ -129,9 +129,42 @@ nuxt-app/
 ##  Fetch data (API)
 :::warning
 * Nuxt可以在server pre-render/ browser re-render階段執行程式，除非額外設定，不要在程式中呼叫windows/ browser的屬性或物件
-
+* useFetch() // 在client/ server皆可執行
+* $fetch() // 只在server 執行。
 :::
 
 :::info
 * [fakestoreAPI](https://fakestoreapi.com)：取得假資料
+:::
+
+## Server Routes
+:::info
+* 路徑一定放置在 ./server/api/<檔案/資料夾>
+* 存取路徑為 /api/<檔案/資料夾>/ 
+* 當defineEventHandler()函式接收Request，可以在自定義的 Consumer回傳自定義資料給frontend。
+* getQuery()，處理Req的?query變數。
+* readBody()，處理 Post Req Body。
+:::
+
+
+## Environment
+:::warning
+* 不要把API key放置到repo或是傳給client side
+* .env 存放變數，需要到 nuxt.config.ts 註冊。
+
+:::spoiler 程式碼
+``` javascript=
+./ nuxt.config.ts
+
+export default defineNuxtConfig({
+  ...
+  runtimeConfig: {
+    <變數>: process.env.<ENV 變數>,
+    public :{ // public 定義的變數 client side可以取得，不得放重要資訊。
+
+    }
+  }
+});
+```
+:::
 :::
