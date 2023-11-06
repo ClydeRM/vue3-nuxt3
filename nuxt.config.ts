@@ -4,5 +4,23 @@ export default defineNuxtConfig({
   imports: {
     autoImport: true,
   },
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ["@nuxtjs/tailwindcss"],
+  app: {
+    // Application metadata
+    head: {
+      title: "Vue Practice",
+      meta: [
+        {
+          name: "description",
+          content: "Everything about Nuxt3",
+        },
+      ],
+      link: [
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/icon?family=Material+Icons",
+        },
+      ],
+    },
+  },
 });
