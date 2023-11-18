@@ -60,10 +60,10 @@ input[type="number"] {
   .cart-money {
     @apply text-xl tracking-[1px] mx-0 my-[5px];
   }
-  .cart-money.plus {
+  .cart-money-plus {
     @apply text-[#2ecc71];
   }
-  .cart-money.minus {
+  .cart-money-minus {
     @apply text-[#c0392b];
   }
   .cart-btn {
@@ -88,7 +88,7 @@ input[type="number"] {
   .cart-delete-btn {
     @apply cursor-pointer bg-[#e74c3c] text-white text-xl leading-5 absolute -translate-x-full -translate-y-2/4 opacity-0 transition-opacity duration-[0.3s] ease-[ease] px-[5px] py-0.5 border-0 left-0 top-2/4;
   }
-  .cart-list li:hover .delete-btn {
+  .cart-list li:hover .cart-delete-btn {
     @apply opacity-100;
   }
 }

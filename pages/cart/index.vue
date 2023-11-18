@@ -1,13 +1,17 @@
 <template>
-    <div>
-        <h2>This is Crt Page</h2>
+    <div class="cart-body">
+        <CartHeader />
+        <div class="cart-container">
+            <CartBalance />
+            <CartExpenses />
+            <CartTransactionList />
+            <CartTransaction />
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-    layout: 'cart'
-})
+definePageMeta({ layout: 'cart' })
 </script>
 
 <style scoped>
