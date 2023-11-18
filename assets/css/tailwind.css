@@ -1,21 +1,94 @@
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
 body {
-    @apply bg-gray-50;
+  @apply bg-gray-50;
+}
+
+.cart-body {
+  @apply bg-[#f7f7f7] flex flex-col items-center justify-center min-h-screen text-lg m-0;
+  font-family: "Lato", sans-serif;
+}
+.cart-container {
+  @apply w-[400px] mx-auto my-[30px];
+}
+
+h1 {
+  @apply tracking-[1px] m-0;
+}
+h3 {
+  @apply mt-10 mb-2.5 mx-0 pb-2.5 border-b-[#bbb] border-b border-solid;
+}
+h4 {
+  @apply uppercase m-0;
+}
+label {
+  @apply inline-block mx-0 my-2.5;
+}
+input[type="text"],
+input[type="number"] {
+  @apply border block text-base w-full p-2.5 rounded-sm border-solid border-[#dedede];
 }
 
 @layer components {
-    .btn {
-        @apply bg-[#12b488] text-white px-1 py-1 rounded-md text-sm text-white inline-block;
-    }
+  .btn {
+    @apply bg-[#12b488] text-white px-1 py-1 rounded-md text-sm text-white inline-block;
+  }
 
-    .link {
-        @apply px-1 py-1 rounded-md text-sm inline-block;
-    }
+  .link {
+    @apply px-1 py-1 rounded-md text-sm inline-block;
+  }
 
-    .card {
-        @apply p-3 rounded-md bg-white shadow-md h-full;
-    }
+  .card {
+    @apply p-3 rounded-md bg-white shadow-md h-full;
+  }
+
+  .cart-inc-exp-container {
+    @apply bg-white shadow-[var(--box-shadow)] flex justify-between mx-0 my-5 p-5;
+  }
+  .cart-inc-exp-container > div {
+    @apply flex-1 text-center first-of-type:border-r-[#dedede] first-of-type:border-r first-of-type:border-solid;
+  }
+  .cart-money {
+    @apply text-xl tracking-[1px] mx-0 my-[5px];
+  }
+  .cart-money.plus {
+    @apply text-[#2ecc71];
+  }
+  .cart-money.minus {
+    @apply text-[#c0392b];
+  }
+  .cart-btn {
+    @apply cursor-pointer bg-[#9c88ff] shadow-[var(--box-shadow)] text-white block text-base w-full mt-2.5 mb-[30px] mx-0 p-2.5 border-0;
+  }
+  .cart-btn:focus,
+  .cart-delete-btn:focus {
+    outline: 0;
+  }
+  .cart-list {
+    @apply list-none mb-10 p-0;
+  }
+  .cart-list li {
+    @apply bg-white shadow-[var(--box-shadow)] text-[#333] flex justify-between relative mx-0 my-2.5 p-2.5;
+  }
+  .cart-list li.plus {
+    @apply border-r-[5px] border-r-[#2ecc71] border-solid;
+  }
+  .cart-list li.minus {
+    @apply border-r-[5px] border-r-[#c0392b] border-solid;
+  }
+  .cart-delete-btn {
+    @apply cursor-pointer bg-[#e74c3c] text-white text-xl leading-5 absolute -translate-x-full -translate-y-2/4 opacity-0 transition-opacity duration-[0.3s] ease-[ease] px-[5px] py-0.5 border-0 left-0 top-2/4;
+  }
+  .cart-list li:hover .delete-btn {
+    @apply opacity-100;
+  }
 }

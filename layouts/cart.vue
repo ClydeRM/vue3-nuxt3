@@ -2,17 +2,17 @@
     <div>
         <header class="shadow-sm bg-white">
             <ul class="flex">
-                <li>
-                    <nav class="container mx-auto p-4">
-                        <NuxtLink to="/" class="font-bold">Home</NuxtLink>
-                    </nav>
-                </li>
-                <li>
-                    <nav class="container mx-auto p-4">
-                        <NuxtLink to="/cart" class="font-bold">Cart</NuxtLink>
-                    </nav>
-                </li>
-            </ul>
+                    <li>
+                        <nav class="container mx-auto p-4">
+                            <NuxtLink to="/" class="font-bold">Home</NuxtLink>
+                        </nav>
+                    </li>
+                    <li>
+                        <nav class="container mx-auto p-4">
+                            <NuxtLink to="/products" class="font-bold">Merchandise</NuxtLink>
+                        </nav>
+                    </li>
+                </ul>
         </header>
         <div class="container mx-auto p-4">
             <slot />
@@ -26,7 +26,7 @@
                     <NuxtLink to="/about">About</NuxtLink>
                 </li>
                 <li>
-                    <NuxtLink to="/cart">Cart</NuxtLink>
+                    <NuxtLink to="/products">Merchandise</NuxtLink>
                 </li>
             </ul>
         </footer>

@@ -13,6 +13,9 @@
                     <li>
                         <NuxtLink to="/products" class="btn">Merchandise</NuxtLink>
                     </li>
+                    <li>
+                        <NuxtLink to="/cart" class="btn">Cart</NuxtLink>
+                    </li>
                 </ul>
             </nav>
         </header>
