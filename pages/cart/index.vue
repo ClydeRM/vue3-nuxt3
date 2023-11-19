@@ -15,6 +15,7 @@ import { user } from '~/app.vue';
 import {
     Product
 } from '~/composables/constant/Product';
+import { generateUniqueId } from '~/composables/helper/generateUniqueId';
 
 export default defineComponent({
     layout: 'cart',
@@ -44,12 +45,16 @@ export default defineComponent({
         });
 
         const handleAddProductEvent = (product: Product) => {
+            product.key = generateUniqueId();
             transactions.value.push(product);
+            console.log(transactions.value);
+
             saveTransactionsToLocalStorage();
         }
 
-        const handleDeleteProductEvent = (id: number) => {
-            transactions.value = transactions.value.filter((transaction) => { transaction.id !== id });
+        const handleDeleteProductEvent = (key: string) => {
+            transactions.value = transactions.value.filter((transaction) => transaction.key !== key);
+
             saveTransactionsToLocalStorage();
             useNuxtApp().$toast.success("已刪除產品");
         }

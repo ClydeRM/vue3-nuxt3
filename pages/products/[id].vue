@@ -13,6 +13,7 @@
 <script setup lang="ts">
 import { user } from '~/app.vue';
 import { Product } from '~/composables/constant/Product';
+import { generateUniqueId } from '~/composables/helper/generateUniqueId';
 
 definePageMeta({ layout: 'products' });
 
@@ -32,6 +33,7 @@ const useData = inject<{ transactions: Product[] }>(user);
 const transactions = ref(useData?.transactions || [] as Product[]);
 
 const handleAddProductEvent = (product: Product) => {
+  product.key = generateUniqueId();
   transactions.value.push(product);
   saveTransactionsToLocalStorage();
   useNuxtApp().$toast.success("加入購物車");

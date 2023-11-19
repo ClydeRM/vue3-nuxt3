@@ -5,7 +5,7 @@
             <li v-for="item in props.transactions" :key="item.id.toString()" :class="+item.price < 0 ? 'minus' : 'plus'">
                 <span class="font-bold truncate">{{ item.title }}</span>
                 <span>${{ item.price }}</span> 
-                <button class="cart-delete-btn" @click="deleteProduct(item.id)"></button>
+                <button class="cart-delete-btn" @click="deleteProduct(item.key)"></button>
             </li>
         </ul>
     </div>
@@ -25,8 +25,8 @@ export default defineComponent({
     emits: ['deleteProduct'],
     setup(props, {emit}) {
 
-        const deleteProduct = (id: number) => {
-            emit('deleteProduct', id);
+        const deleteProduct = (key: string) => {
+            emit('deleteProduct', key);
         }
 
         return { props , deleteProduct }
