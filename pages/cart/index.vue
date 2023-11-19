@@ -4,14 +4,33 @@
         <div class="cart-container">
             <CartBalance />
             <CartExpenses />
-            <CartTransactionList />
+            <CartTransactionList :transactions="transactions" />
             <CartTransaction />
         </div>
     </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { user } from '~/app.vue';
+import {
+    Product
+} from '~/composables/constant/Product';
 definePageMeta({ layout: 'cart' })
+
+export default defineComponent({
+    setup() {
+
+        const useData = inject<{ transaction: Product[] }>(user);
+        const transactions: Product[] = useData?.transaction || [];
+
+        return {
+            user,
+            useData,
+            transactions,
+        }
+    }
+})
+
 </script>
 
 <style scoped>

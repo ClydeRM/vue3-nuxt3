@@ -24,15 +24,19 @@ body {
 h1 {
   @apply tracking-[1px] m-0;
 }
+
 h3 {
   @apply mt-10 mb-2.5 mx-0 pb-2.5 border-b-[#bbb] border-b border-solid;
 }
+
 h4 {
   @apply uppercase m-0;
 }
+
 label {
   @apply inline-block mx-0 my-2.5;
 }
+
 input[type="text"],
 input[type="number"] {
   @apply border block text-base w-full p-2.5 rounded-sm border-solid border-[#dedede];
