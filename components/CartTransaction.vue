@@ -1,20 +1,20 @@
 <template>
     <div>
-        <h3>Add new transaction</h3>
-        <form id="form">
+        <h3 class="text-xl text-center">ADD PRODUCT</h3>
+        <form id="form" @submit.prevent="onSubmit">
             <div class="form-control">
-                <label for="text">Text</label>
-                <input type="text" id="text" placeholder="Enter text..." />
+                <label for="text">ProductId</label>
+                <input type="text" id="productId" v-model="productId" placeholder="Enter text..." />
             </div>
             <div class="form-control">
+                <label for="price">Price</label>
                 <!-- <label for="amount">
                     Amount <br />
                     (negative - expense, positive - income)\
                 </label> -->
-                <label for="amount"></label>
-                <input type="text" id="amount" placeholder="Enter amount..." />
+                <input type="number" id="price" v-model="price" placeholder="Enter price..." />
             </div>
-            <button class="cart-btn">Add transaction</button>
+            <button class="cart-btn">Add</button>
         </form>
     </div>
 </template>
@@ -24,9 +24,23 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
     setup() {
+        const productId = ref('');
+        const price = ref('');
+        const onSubmit = () => {
+            if (!productId.value || !price.value) {
+                useNuxtApp().$toast.error("請輸入資料");
+                return;
+            }
+            if (!productId.value.match(/[0-9]+/) || !price.value.match(/[0-9]+/)) {
+                useNuxtApp().$toast.error("資料格式錯誤，只接受數字");
+                return;
+            }
+            productId.value = '';
+            price.value = '';
+            useNuxtApp().$toast.success("加入購物車");
+        };
 
-
-        return {}
+        return { onSubmit, productId, price }
     }
 })
 </script>

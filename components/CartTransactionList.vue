@@ -23,7 +23,7 @@ export default defineComponent({
         },
     },
     setup(props) {
-        const transactions = props.transactions;
+        const transactions: Product[] = props.transactions;
 
         return { transactions }
     }

@@ -1,7 +1,7 @@
 
 <template>
     <div>
-        <h2>Cart</h2>
+        <h2 class="text-xl text-center">Cart</h2>
     </div>
 </template>
 
