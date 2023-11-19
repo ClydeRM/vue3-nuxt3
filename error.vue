@@ -8,6 +8,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ layout: 'default' });
+
 defineProps(['error']);
 
 const handleClearError = () => clearError({redirect: '/'})

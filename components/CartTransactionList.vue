@@ -2,10 +2,10 @@
     <div>
         <h3>Product List</h3>
         <ul class="cart-list">
-            <li v-for="item in transactions" 
-                :key="item.id.toString()"
-                :class="+item.price < 0 ? 'minus' : 'plus'">
-                {{ item.title }} <span>${{ item.price }}</span> <button class="cart-delete-btn"></button>
+            <li v-for="item in props.transactions" :key="item.id.toString()" :class="+item.price < 0 ? 'minus' : 'plus'">
+                <span class="font-bold truncate">{{ item.title }}</span>
+                <span>${{ item.price }}</span> 
+                <button class="cart-delete-btn" @click="deleteProduct(item.id)"></button>
             </li>
         </ul>
     </div>
@@ -16,16 +16,20 @@ import { defineComponent } from 'vue';
 import { Product } from '~/composables/constant/Product';
 
 export default defineComponent({
-     props: {
-        transactions:  {
+    props: {
+        transactions: {
             type: Array as () => Array<Product>,
             required: true,
         },
     },
-    setup(props) {
-        const transactions: Product[] = props.transactions;
+    emits: ['deleteProduct'],
+    setup(props, {emit}) {
 
-        return { transactions }
+        const deleteProduct = (id: number) => {
+            emit('deleteProduct', id);
+        }
+
+        return { props , deleteProduct }
     }
 })
 </script>

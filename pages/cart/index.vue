@@ -1,11 +1,11 @@
 <template>
     <div class="cart-body">
         <CartHeader />
-        <div class="cart-container"> 
-            <CartBalance :total="total" />
-            <CartExpenses :income="+income" :expense="+expense"/>
-            <CartTransactionList :transactions="transactions" />
-            <CartTransaction />
+        <div class="cart-container">
+            <CartBalance :total="+total" />
+            <CartExpenses :income="+income" :expense="+expense" />
+            <CartTransactionList :transactions="transactions" @deleteProduct="handleDeleteProductEvent" />
+            <CartTransaction @addProduct="handleAddProductEvent" />
         </div>
     </div>
 </template>
@@ -15,31 +15,57 @@ import { user } from '~/app.vue';
 import {
     Product
 } from '~/composables/constant/Product';
-definePageMeta({ layout: 'cart' })
 
 export default defineComponent({
+    layout: 'cart',
     setup() {
 
         const useData = inject<{ transactions: Product[] }>(user);
-        const transactions: Product[] = useData?.transactions || [];
+        const transactions = ref(useData?.transactions || [] as Product[]);
+
         const total = computed(() => {
-            return transactions.reduce((acc, trans) => {
+            return transactions.value.reduce((acc, trans) => {
                 return acc + parseInt(trans.price);
             }, 0);
         });
         const income = computed(() => {
-            return transactions.filter((transaction) => parseInt(transaction.price) > 0)
-                               .reduce((acc, trans) => {
-                                        return acc + parseInt(trans.price);
-                                       }, 0)
-                               .toFixed(2);
+            return transactions.value.filter((transaction) => parseInt(transaction.price) < 0)
+                .reduce((acc, trans) => {
+                    return acc + parseInt(trans.price);
+                }, 0)
+                .toFixed(2);
         });
         const expense = computed(() => {
-            return transactions.filter((transaction) => parseInt(transaction.price) < 0)
-                               .reduce((acc, trans) => {
-                                   return acc + parseInt(trans.price);
-                               }, 0)
-                               .toFixed(2);
+            return transactions.value.filter((transaction) => parseInt(transaction.price) > 0)
+                .reduce((acc, trans) => {
+                    return acc + parseInt(trans.price);
+                }, 0)
+                .toFixed(2);
+        });
+
+        const handleAddProductEvent = (product: Product) => {
+            transactions.value.push(product);
+            saveTransactionsToLocalStorage();
+        }
+
+        const handleDeleteProductEvent = (id: number) => {
+            transactions.value = transactions.value.filter((transaction) => { transaction.id !== id });
+            saveTransactionsToLocalStorage();
+            useNuxtApp().$toast.success("已刪除產品");
+        }
+
+        // Save transactions to local storage
+        const saveTransactionsToLocalStorage = () => {
+            localStorage.setItem('transactions', JSON.stringify(transactions.value));
+        };
+
+        onMounted(() => {
+            const storage = localStorage.getItem('transactions');
+            const savedTransactions = storage ? JSON.parse(storage) : null;
+
+            if (savedTransactions) {
+                transactions.value = savedTransactions;
+            }
         });
 
         return {
@@ -49,6 +75,8 @@ export default defineComponent({
             income,
             expense,
             transactions,
+            handleAddProductEvent,
+            handleDeleteProductEvent,
         }
     }
 })

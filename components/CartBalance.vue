@@ -6,8 +6,6 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-
 export default defineComponent({
     props: {
         total: {
@@ -16,7 +14,7 @@ export default defineComponent({
         },
     },
     setup(props) {
-        const total: number = props.total;
+        const total: number = props.total > 0 ? -props.total : props.total;
 
         return { total }
     }
